@@ -16,7 +16,7 @@ public class SwaggerConfig {
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.service.desk.controllers;"))
+                .apis(RequestHandlerSelectors.basePackage("org.service.desk"))
                 .paths(regex("/service.*"))
                 .build()
                 .apiInfo(metaData());
@@ -27,7 +27,7 @@ public class SwaggerConfig {
                 "Spring Boot REST API for Online Service at your door",
                 "1.0",
                 "Terms of service",
-                new Contact("Ashish Awasthi", "https://eliteofindia.github.io/", "rancho014@gmail.com"),
+                new Contact("Ashish Awasthi", "http://eliteofindia.github.io/", "rancho014@gmail.com"),
                "Apache License Version 2.0",
                 "https://www.apache.org/licenses/LICENSE-2.0");
         return apiInfo;

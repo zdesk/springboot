@@ -7,15 +7,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.*;
 
 @SpringBootApplication
+@ComponentScan(basePackages={"org.service.desk.swagger.config","org.service.desk.controllers"})
 public class ServiceDeskAPI {
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceDeskAPI.class, args);
     }
 
-    @Bean
+    /*@Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 
@@ -28,6 +30,6 @@ public class ServiceDeskAPI {
             }
 
         };
-    }
+    }*/
 
 }

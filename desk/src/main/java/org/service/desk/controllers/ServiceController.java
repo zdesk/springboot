@@ -1,7 +1,7 @@
 package org.service.desk.controllers;
 
 
-
+import org.json.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -20,11 +20,10 @@ public class ServiceController {
     }
     )
     @RequestMapping(value = "/all", method= RequestMethod.GET, produces = "application/json")
-    public String list(){
-        return "{"
-        		+ "Service 1; This is service 1"
-        		+ "Service 2; This is service 2"
-        		+ "}";
+    public String list() throws JSONException {
+        JSONObject response =  new JSONObject();
+        response.put("key1", "Value1");
+        return response.toString();
     }
 
 }
