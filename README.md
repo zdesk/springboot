@@ -9,20 +9,20 @@
 
 * Add below dependency to pom.xml
         <p>
-			'''
+			```xml
 				<dependency>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
 					<scope>provided</scope>
 				</dependency>
-			'''
+			```
 		</p>
 
 * add a property to pom.xml
-    *   <p>
-			'''
+       <p>
+			```xml
 				<properties>
 					<start-class>yourpackage.startapplicaitonclass</start-class>
 				</properties>
-			'''
+			```
 		</P>
