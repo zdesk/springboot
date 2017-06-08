@@ -5,10 +5,13 @@ import org.json.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/service")
+@Component
 public class ServiceController {
 	
 	@ApiOperation(value = "View a list of available products",response = Iterable.class)

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.*;
 
 @SpringBootApplication
-@ComponentScan(basePackages={"org.service.desk.swagger.config","org.service.desk.controllers"})
+//@ComponentScan(basePackages={"org.service.desk.config","org.service.desk.controllers"})
 public class ServiceDeskAPI extends SpringBootServletInitializer {
 
 	@Override
