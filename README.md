@@ -1,1 +1,20 @@
-Spring boot with Swagger 2
+<H2>Spring boot with Swagger 2</H2>
+
+<p>To create a sprint boot deployable in apache -</P>
+
+* Extend your applicaiton class with SpringBootServletInitializer
+    * override configure method
+
+* Add war packaging to pom.xml
+
+* Add below dependency to pom.xml
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+* add a property to pom.xml
+    *   <properties>
+            <start-class>yourpackage.startapplicaitonclass</start-class>
+        </properties>
