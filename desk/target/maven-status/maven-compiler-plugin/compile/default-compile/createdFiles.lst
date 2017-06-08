@@ -1,0 +1,3 @@
+org\service\desk\swagger\config\SwaggerConfig.class
+org\service\desk\controllers\ServiceController.class
+org\service\desk\ServiceDeskAPI.class
