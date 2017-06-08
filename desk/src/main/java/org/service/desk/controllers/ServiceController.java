@@ -25,7 +25,9 @@ public class ServiceController {
     @RequestMapping(value = "/all", method= RequestMethod.GET, produces = "application/json")
     public String list() throws JSONException {
         JSONObject response =  new JSONObject();
-        response.put("key1", "Value1");
+        response.put("Service 1", "This is our service 1");
+        response.put("Service 1", "This is our service 1");
+        response.put("Service 1", "This is our service 1");
         return response.toString();
     }
 
