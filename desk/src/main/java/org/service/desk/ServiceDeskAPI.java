@@ -9,8 +9,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.context.annotation.*;
 
+@EnableMongoRepositories
 @SpringBootApplication
 //@ComponentScan(basePackages={"org.service.desk.config","org.service.desk.controllers"})
 public class ServiceDeskAPI extends SpringBootServletInitializer {

@@ -14,12 +14,17 @@
     </parent>
     
     <properties>
-     <start-class>org.service.desk.ServiceDeskAPI</start-class>
-	 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	 <java.version>1.8</java.version>
+	     <start-class>org.service.desk.ServiceDeskAPI</start-class>
+		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		 <java.version>1.8</java.version>
 	</properties>
     
   <dependencies>
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-devtools</artifactId>
+	        <optional>true</optional>
+	    </dependency>
   
   		<dependency>
 		    <groupId>io.springfox</groupId>
@@ -36,42 +41,55 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		
+		 <!-- dependency>
+			 <groupId>org.springframework.boot</groupId>
+			 <artifactId>spring-boot-starter-security</artifactId>
+		 </dependency>
+		 
+		 <dependency>
+			 sartifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		
+		 
+		 <dependency>
 			 <groupId>com.h2database</groupId>
 			 <artifactId>h2</artifactId>
 		 </dependency>
 		 
-		<dependency>
-		 <groupId>org.springframework.boot</groupId>
-		 <artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+		 // This is used in unit test 
 		 <dependency>
-			 <groupId>org.springframework.boot</groupId>
-			 <artifactId>spring-boot-starter-security</artifactId>
-		 </dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        // this is used when we are delivering a war file to deploy in existing tomcat setup
+        <dependency> 
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency> 
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
 		 <dependency>
 			 <groupId>org.springframework.boot</groupId>
 			 <artifactId>spring-boot-starter-thymeleaf</artifactId>
-		 </dependency>
+		 </dependency-->
 		
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-            <scope>test</scope>
-        </dependency>
+        
         
 		<dependency>
 		    <groupId>org.json</groupId>
