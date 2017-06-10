@@ -45,15 +45,27 @@ public class UserInformationController {
 	    }
 	    
 	    @ResponseBody
-	    @RequestMapping(value = "/addUser", method= RequestMethod.POST, produces = "application/json")
+	    @RequestMapping(value = "/addUser", method= RequestMethod.PUT, produces = "application/json")
 	    public boolean addUserInformation(@RequestBody UserInformation userInfo) throws JSONException {
 	    	return userInfoService.insertUserInfo(userInfo);
 	    }
 	    
 	    @ResponseBody
-	    @RequestMapping(value = "/getUser/{firstName}", method= RequestMethod.GET, produces = "application/json")
+	    @RequestMapping(value = "/getUserByFirstName/{firstName}", method= RequestMethod.GET, produces = "application/json")
 	    public List<UserInformation> getUserByFirstName(@RequestParam String firstName) {
 	    	return userInfoService.findUserByFirstName(firstName);	    	
+	    }
+	    
+	    @ResponseBody
+	    @RequestMapping(value = "/getUserByUserIdentity/{userIdentity}", method= RequestMethod.GET, produces = "application/json")
+	    public List<UserInformation> getUserByUserIdentiy(@RequestParam String userIdentity) {
+	    	return userInfoService.findUserByUserIdentity(userIdentity);	    	
+	    }
+	    
+	    @ResponseBody
+	    @RequestMapping(value = "/getUserByLastName/{lastName}", method= RequestMethod.GET, produces = "application/json")
+	    public List<UserInformation> getUserByLastName(@RequestParam(value="lastName", required=false) String lastName) {
+	    	return userInfoService.findUserByLastName(lastName);	    	
 	    }
 	    
 	    @ResponseBody

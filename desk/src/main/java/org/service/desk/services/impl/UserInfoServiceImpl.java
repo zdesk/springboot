@@ -25,4 +25,19 @@ public class UserInfoServiceImpl extends UserInfoService {
 		return userInfoDao.findByFirstName(firstName);
 	}
 
+	@Override
+	public List<UserInformation> findUserByLastName(String lastName) {
+		// TODO Auto-generated method stub
+		if(lastName==null){
+    		lastName="";
+    	}
+		return userInfoDao.findByLastName(lastName);
+	}
+
+	@Override
+	public List<UserInformation> findUserByUserIdentity(String userIdentity) {
+		// TODO Auto-generated method stub
+		return userInfoDao.findByUserIdentity(userIdentity);
+	}
+
 }

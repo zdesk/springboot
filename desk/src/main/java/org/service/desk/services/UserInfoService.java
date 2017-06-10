@@ -10,4 +10,6 @@ import org.springframework.stereotype.Service;
 public abstract class UserInfoService {
 	public abstract boolean insertUserInfo(UserInformation userInfo);
 	public abstract List<UserInformation> findUserByFirstName(String firstName);
+	public abstract List<UserInformation> findUserByLastName(String lastName);
+	public abstract List<UserInformation> findUserByUserIdentity(String userIdentity);
 }
