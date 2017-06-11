@@ -2,42 +2,27 @@ package org.service.desk.services.impl;
 
 import java.util.List;
 
-import org.service.desk.entities.dao.UserInfoDAO;
-import org.service.desk.entities.models.UserInformation;
-import org.service.desk.services.UserInfoService;
+import org.service.desk.entities.dao.UserInformationRepo;
+import org.service.desk.entities.models.User;
+import org.service.desk.services.UserInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserInfoServiceImpl extends UserInfoService {
+public class UserInfoServiceImpl extends UserInformationService {
 	
 	@Autowired
-	private UserInfoDAO userInfoDao;
+	private UserInformationRepo userInfoRepo;
 	
-	public boolean insertUserInfo(UserInformation userInfo){
-		userInfoDao.save(userInfo);
+	public boolean insertUserInfo(User userInfo){
+		userInfoRepo.save(userInfo);
 		return true;
 	}
 
 	@Override
-	public List<UserInformation> findUserByFirstName(String firstName) {
+	public User findUserByUserName(String userName) {
 		
-		return userInfoDao.findByFirstName(firstName);
-	}
-
-	@Override
-	public List<UserInformation> findUserByLastName(String lastName) {
-		// TODO Auto-generated method stub
-		if(lastName==null){
-    		lastName="";
-    	}
-		return userInfoDao.findByLastName(lastName);
-	}
-
-	@Override
-	public List<UserInformation> findUserByUserIdentity(String userIdentity) {
-		// TODO Auto-generated method stub
-		return userInfoDao.findByUserIdentity(userIdentity);
+		return userInfoRepo.findByUsername(userName);
 	}
 
 }

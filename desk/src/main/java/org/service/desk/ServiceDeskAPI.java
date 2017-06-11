@@ -2,6 +2,7 @@ package org.service.desk;
 
 import java.util.Arrays;
 
+import org.service.desk.entities.dao.UserInformationRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,9 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.context.annotation.*;
 
-@EnableMongoRepositories
+
 @SpringBootApplication
-//@ComponentScan(basePackages={"org.service.desk.config","org.service.desk.controllers"})
+//@ComponentScan(basePackages={"org.serivce.desk.jwt","org.service.desk"})
 public class ServiceDeskAPI extends SpringBootServletInitializer {
 
 	@Override

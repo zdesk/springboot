@@ -1,4 +1,4 @@
-package org.service.desk.entities.models;
+/*package org.service.desk.entities.models;
 
 
 import org.springframework.data.annotation.Id;
@@ -48,3 +48,4 @@ public class UserInformation {
 	}
 	
 }
+*/

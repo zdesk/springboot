@@ -2,10 +2,7 @@ package org.service.desk.controllers;
 
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapProperties.Credential;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +16,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import org.service.desk.entities.models.*;
-import org.service.desk.services.UserInfoService;
+import org.service.desk.services.UserInformationService;
+
 
 @RestController
 @RequestMapping("/")
@@ -34,44 +32,27 @@ import org.service.desk.services.UserInfoService;
 public class UserInformationController {
 	
 		@Autowired
-		private UserInfoService userInfoService;
+		private UserInformationService userInformationService;
 	
-	    @RequestMapping(value = "/", method= RequestMethod.GET, produces = "application/json")
-	    public String list() {
-	    	return "<h2>"
-	    			+"<h2> Welcome to REST API Gateway of SERVICE AT YOUR DESK</h2>"
-	    			+"<a href='/swagger-ui.html'> please navigate to swagger</a>"
-	    			+ "</h2>";
+	    
+	    @ResponseBody
+	    @RequestMapping(value = "/addUser", method= RequestMethod.POST, produces = "application/json")
+	    public boolean addUserInformation(@RequestBody User userInfo) {
+	    	return userInformationService.insertUserInfo(userInfo);
 	    }
 	    
 	    @ResponseBody
-	    @RequestMapping(value = "/addUser", method= RequestMethod.PUT, produces = "application/json")
-	    public boolean addUserInformation(@RequestBody UserInformation userInfo) throws JSONException {
-	    	return userInfoService.insertUserInfo(userInfo);
+	    @RequestMapping(value = "/getUser/{userName}", method= RequestMethod.GET, produces = "application/json")
+	    public User getUserByFirstName(@PathVariable String userName) {
+	    	return userInformationService.findUserByUserName(userName);	    	
 	    }
 	    
-	    @ResponseBody
-	    @RequestMapping(value = "/getUserByFirstName/{firstName}", method= RequestMethod.GET, produces = "application/json")
-	    public List<UserInformation> getUserByFirstName(@RequestParam String firstName) {
-	    	return userInfoService.findUserByFirstName(firstName);	    	
-	    }
 	    
-	    @ResponseBody
-	    @RequestMapping(value = "/getUserByUserIdentity/{userIdentity}", method= RequestMethod.GET, produces = "application/json")
-	    public List<UserInformation> getUserByUserIdentiy(@RequestParam String userIdentity) {
-	    	return userInfoService.findUserByUserIdentity(userIdentity);	    	
-	    }
-	    
-	    @ResponseBody
-	    @RequestMapping(value = "/getUserByLastName/{lastName}", method= RequestMethod.GET, produces = "application/json")
-	    public List<UserInformation> getUserByLastName(@RequestParam(value="lastName", required=false) String lastName) {
-	    	return userInfoService.findUserByLastName(lastName);	    	
-	    }
 	    
 	    @ResponseBody
 	    @RequestMapping(value = "/updateUser", method= RequestMethod.PUT, produces = "application/json")
-	    public boolean updateUserById(@RequestBody UserInformation userInfo) {
-	    	return userInfoService.insertUserInfo(userInfo);
+	    public boolean updateUserById(@RequestBody User userInfo) {
+	    	return userInformationService.insertUserInfo(userInfo);
 	    }
 
 

@@ -1,4 +1,4 @@
-package org.service.desk.entities.models;
+/*package org.service.desk.entities.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -10,6 +10,7 @@ public class UserCredentials {
 	
 	private String userIdentity;
 	private String password;
+	private ROLES role;
 	
 	public String getUserIdentity() {
 		return userIdentity;
@@ -24,3 +25,11 @@ public class UserCredentials {
 		this.password = password;
 	}
 }
+
+enum ROLES{
+	GUEST,
+	USER,
+	PROVIDER,
+	ADMIN,
+}
+*/

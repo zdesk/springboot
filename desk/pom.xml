@@ -7,7 +7,7 @@
   <description>	REST apis for service desk application</description>
   <packaging>war</packaging>
   
-  <parent>
+  	<parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.2.RELEASE</version>
@@ -17,6 +17,7 @@
 	     <start-class>org.service.desk.ServiceDeskAPI</start-class>
 		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		 <java.version>1.8</java.version>
+		 <jjwt.version>0.7.0</jjwt.version>
 	</properties>
     
   <dependencies>
@@ -45,11 +46,24 @@
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 		
-		 <!-- dependency>
+		<dependency>
 			 <groupId>org.springframework.boot</groupId>
 			 <artifactId>spring-boot-starter-security</artifactId>
 		 </dependency>
 		 
+		 <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        
+         <dependency>
+            <groupId>org.springframework.mobile</groupId>
+            <artifactId>spring-mobile-device</artifactId>
+        </dependency>
+        
+		
+		 <!-- 		 
 		 <dependency>
 			 sartifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
