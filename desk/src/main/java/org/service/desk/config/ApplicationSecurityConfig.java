@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.service.desk.jwt.JwtAuthenticationEntryPoint;
 import org.service.desk.jwt.JwtAuthenticationTokenFilter;
+import org.service.desk.services.UserInformationService;
 
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @Configuration
@@ -28,7 +29,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserInformationService userDetailsService;
 
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
