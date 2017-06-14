@@ -87,14 +87,14 @@ $(function () {
                 $userInfoBody.append($("<div>").text("Username: " + data.username));
                 $userInfoBody.append($("<div>").text("Email: " + data.email));
 
-                var $authorityList = $("<ul>");
+                /*var $authorityList = $("<ul>");
                 data.authorities.forEach(function (authorityItem) {
                     $authorityList.append($("<li>").text(authorityItem.authority));
                 });
                 var $authorities = $("<div>").text("Authorities:");
                 $authorities.append($authorityList);
 
-                $userInfoBody.append($authorities);
+                $userInfoBody.append($authorities);*/
                 $userInfo.show();
             }
         });

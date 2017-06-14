@@ -2,6 +2,7 @@ package org.service.desk.jwt.controller;
 
 import org.service.desk.jwt.JwtTokenUtil;
 import org.service.desk.jwt.JwtUser;
+import org.service.desk.services.UserInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +22,7 @@ public class UserRestController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserInformationService userDetailsService;
 
     @RequestMapping(value = "user", method = RequestMethod.GET)
     public JwtUser getAuthenticatedUser(HttpServletRequest request) {

@@ -1,4 +1,4 @@
-package org.service.desk.jwt.controller;
+package org.service.desk.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +23,7 @@ import org.service.desk.jwt.JwtAuthenticationRequest;
 import org.service.desk.jwt.JwtTokenUtil;
 import org.service.desk.jwt.JwtUser;
 import org.service.desk.jwt.service.JwtAuthenticationResponse;
+import org.service.desk.services.UserInformationService;
 
 import java.util.logging.Logger;
 
@@ -41,7 +42,7 @@ public class AuthenticationRestController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserInformationService userDetailsService;
 
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {

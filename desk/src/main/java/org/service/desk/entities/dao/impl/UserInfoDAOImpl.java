@@ -1,4 +1,4 @@
-package org.service.desk.dao.impl;
+package org.service.desk.entities.dao.impl;
 
 import java.util.List;
 

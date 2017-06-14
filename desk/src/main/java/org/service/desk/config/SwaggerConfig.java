@@ -27,7 +27,7 @@ public class SwaggerConfig {
     public Docket ServiceDeskAPI() {
     	
         ParameterBuilder aParameterBuilder = new ParameterBuilder();
-        aParameterBuilder.name("Authorization").modelRef(new ModelRef("string")).parameterType("header").required(true).build();
+        aParameterBuilder.name("Authorization").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
         List<Parameter> aParameters = new ArrayList<Parameter>();
         aParameters.add(aParameterBuilder.build());
         return new Docket(DocumentationType.SWAGGER_2)
