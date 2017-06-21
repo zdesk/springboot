@@ -12,11 +12,12 @@ import org.springframework.security.oauth2.client.token.grant.code.Authorization
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 
 @Configuration
-@PropertySource("classpath:facebookoauth2.yml")
+@PropertySource("classpath:facebookoauth2.properties")
 public class FacebookOauthClient {	
 	@Bean
     @ConfigurationProperties("facebook.client")
     public AuthorizationCodeResourceDetails facebook() {
+		System.err.println(new AuthorizationCodeResourceDetails().getClientId());
       return new AuthorizationCodeResourceDetails();
     }
     
