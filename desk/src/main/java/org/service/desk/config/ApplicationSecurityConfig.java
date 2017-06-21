@@ -15,8 +15,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.service.desk.jwt.JwtAuthenticationEntryPoint;
-import org.service.desk.jwt.JwtAuthenticationTokenFilter;
+import org.service.desk.jwtauth.JwtAuthEntryPoint;
+import org.service.desk.jwtauth.JwtAuthTokenFilter;
 import org.service.desk.services.UserInformationService;
 
 @SuppressWarnings("SpringJavaAutowiringInspection")
@@ -26,7 +26,7 @@ import org.service.desk.services.UserInformationService;
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
+    private JwtAuthEntryPoint unauthorizedHandler;
 
     @Autowired
     private UserInformationService userDetailsService;
@@ -44,8 +44,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-        return new JwtAuthenticationTokenFilter();
+    public JwtAuthTokenFilter authenticationTokenFilterBean() throws Exception {
+        return new JwtAuthTokenFilter();
     }
     
     @Override

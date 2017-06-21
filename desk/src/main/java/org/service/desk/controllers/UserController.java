@@ -2,7 +2,10 @@ package org.service.desk.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +20,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import org.service.desk.entities.models.*;
+import org.service.desk.jwtauth.JwtTokenUtil;
+import org.service.desk.jwtauth.JwtUser;
 import org.service.desk.services.UserInformationService;
 
 
@@ -30,7 +35,13 @@ import org.service.desk.services.UserInformationService;
         @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
 }
 )
-public class UserInformationController {
+public class UserController {
+	
+		@Value("${jwt.header}")
+	    private String tokenHeader;
+
+	    @Autowired
+	    private JwtTokenUtil jwtTokenUtil;
 	
 		@Autowired
 		private UserInformationService userInformationService;
@@ -54,6 +65,14 @@ public class UserInformationController {
 	    @RequestMapping(value = "/updateUser", method= RequestMethod.PUT, produces = "application/json")
 	    public boolean updateUserById(@RequestBody User userInfo) {
 	    	return userInformationService.insertUserInfo(userInfo);
+	    }
+	    
+	    @RequestMapping(value = "user", method = RequestMethod.GET)
+	    public JwtUser getAuthenticatedUser(HttpServletRequest request) {
+	        String token = request.getHeader(tokenHeader);
+	        String username = jwtTokenUtil.getUsernameFromToken(token);
+	        JwtUser user = (JwtUser) userInformationService.loadUserByUsername(username);
+	        return user;
 	    }
 
 

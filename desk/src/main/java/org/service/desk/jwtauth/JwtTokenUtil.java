@@ -1,4 +1,4 @@
-package org.service.desk.jwt;
+package org.service.desk.jwtauth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

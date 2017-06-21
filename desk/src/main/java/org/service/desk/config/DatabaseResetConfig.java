@@ -9,6 +9,7 @@ import org.service.desk.entities.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 public class DatabaseResetConfig implements CommandLineRunner{
 
@@ -23,9 +24,25 @@ public class DatabaseResetConfig implements CommandLineRunner{
 		
 		adminUser.setId(10L);
 		adminUser.setUsername("admin");
-		adminUser.setPassword("$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi");
+		adminUser.setPassword(new BCryptPasswordEncoder().encode("admin"));
 		adminUser.setEnabled(true);
+		
+		User john = new User();		
+		john.setId(11L);
+		john.setUsername("john");
+		john.setPassword(new BCryptPasswordEncoder().encode("john"));
+		john.setEnabled(true);
+		
+		User arjun = new User();		
+		arjun.setId(12L);
+		arjun.setUsername("arjun");
+		arjun.setPassword(new BCryptPasswordEncoder().encode("arjun"));
+		arjun.setEnabled(true);
+		
+		
 		userInfoDao.save(adminUser);
+		userInfoDao.save(john);
+		userInfoDao.save(arjun);
 		
 	}
 	

@@ -1,4 +1,4 @@
-package org.service.desk.jwt;
+package org.service.desk.jwtauth;
 
 import java.util.List;
 import java.util.stream.Collectors;

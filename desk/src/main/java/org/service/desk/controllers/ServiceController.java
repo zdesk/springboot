@@ -26,8 +26,8 @@ public class ServiceController {
     public String list() throws JSONException {
         JSONObject response =  new JSONObject();
         response.put("Service 1", "This is our service 1");
-        response.put("Service 1", "This is our service 1");
-        response.put("Service 1", "This is our service 1");
+        response.put("Service 2", "This is our service 2");
+        response.put("Service 3", "This is our service 3");
         return response.toString();
     }
 

@@ -1,4 +1,4 @@
-package org.service.desk.jwt;
+package org.service.desk.jwtauth;
 
 import java.io.IOException;
 import javax.servlet.FilterChain;
@@ -17,7 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
+public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
     private final Log logger = LogFactory.getLog(this.getClass());
 

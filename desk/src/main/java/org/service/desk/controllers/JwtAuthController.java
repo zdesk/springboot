@@ -10,27 +10,21 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import ch.qos.logback.classic.Level;
-
-import org.apache.commons.logging.Log;
-import org.service.desk.jwt.JwtAuthenticationRequest;
-import org.service.desk.jwt.JwtTokenUtil;
-import org.service.desk.jwt.JwtUser;
-import org.service.desk.jwt.service.JwtAuthenticationResponse;
+import org.service.desk.jwtauth.JwtAuthRequest;
+import org.service.desk.jwtauth.JwtTokenUtil;
+import org.service.desk.jwtauth.JwtUser;
+import org.service.desk.jwtauth.service.JwtAuthToken;
 import org.service.desk.services.UserInformationService;
 
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-public class AuthenticationRestController {
+public class JwtAuthController {
 
     @Value("${jwt.header}")
     private String tokenHeader;
@@ -45,7 +39,7 @@ public class AuthenticationRestController {
     private UserInformationService userDetailsService;
 
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthRequest authenticationRequest, Device device) throws AuthenticationException {
 
         // Perform the security
         final Authentication authentication = authenticationManager.authenticate(
@@ -62,7 +56,7 @@ public class AuthenticationRestController {
         final String token = jwtTokenUtil.generateToken(userDetails, device);
 
         // Return the token
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+        return ResponseEntity.ok(new JwtAuthToken(token));
     }
 
     @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
@@ -73,7 +67,7 @@ public class AuthenticationRestController {
 
         if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
-            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
+            return ResponseEntity.ok(new JwtAuthToken(refreshedToken));
         } else {
             return ResponseEntity.badRequest().body(null);
         }
