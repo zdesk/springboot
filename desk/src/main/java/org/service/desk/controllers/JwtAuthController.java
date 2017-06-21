@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.service.desk.jwtauth.JwtAuthRequest;
 import org.service.desk.jwtauth.JwtTokenUtil;
 import org.service.desk.jwtauth.JwtUser;
-import org.service.desk.jwtauth.service.JwtAuthToken;
+import org.service.desk.jwtauth.service.JwtTokenStore;
 import org.service.desk.services.UserInformationService;
 
+import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -56,7 +57,7 @@ public class JwtAuthController {
         final String token = jwtTokenUtil.generateToken(userDetails, device);
 
         // Return the token
-        return ResponseEntity.ok(new JwtAuthToken(token));
+        return ResponseEntity.ok(new JwtTokenStore(token));
     }
 
     @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
@@ -67,10 +68,20 @@ public class JwtAuthController {
 
         if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
-            return ResponseEntity.ok(new JwtAuthToken(refreshedToken));
+            return ResponseEntity.ok(new JwtTokenStore(refreshedToken));
         } else {
             return ResponseEntity.badRequest().body(null);
         }
+    }
+    
+    @RequestMapping("/oauth")
+    public Principal user(Principal principal) {
+      return principal;
+    }
+    
+    @RequestMapping("/oauth/check_token")
+    public boolean user(String token) {
+      return true;
     }
 
 }

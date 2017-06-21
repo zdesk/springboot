@@ -1,0 +1,28 @@
+#mongodb
+spring.data.mongodb.host=localhost
+spring.data.mongodb.port=27017
+spring.data.mongodb.database=servicedesk
+
+
+# config context path to "/" by setting an empty string
+server.contextPath=
+
+# JACKSON
+spring.jackson.serialization.INDENT_OUTPUT= true
+
+jwt.header= Authorization
+jwt.secret= asjdlkasjglksagjlksgjalkasjgl
+jwt.expiration= 400
+jwt.route.authentication.path= auth
+jwt.route.authentication.refresh= refresh
+
+#logging:
+#  level:
+#    org.springframework:
+#      security: DEBUG
+
+#logging
+logging.level.org.springframework.web=DEBUG
+logging.level.org.springframework.data=debug
+logging.level.=ERROR
+logging.level.org.hibernate= ERROR
