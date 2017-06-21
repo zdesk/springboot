@@ -67,13 +67,13 @@ public class UserController {
 	    	return userInformationService.insertUserInfo(userInfo);
 	    }
 	    
-	    @RequestMapping(value = "user", method = RequestMethod.GET)
+	    /*@RequestMapping(value = "user", method = RequestMethod.GET)
 	    public JwtUser getAuthenticatedUser(HttpServletRequest request) {
 	        String token = request.getHeader(tokenHeader);
 	        String username = jwtTokenUtil.getUsernameFromToken(token);
 	        JwtUser user = (JwtUser) userInformationService.loadUserByUsername(username);
 	        return user;
-	    }
+	    }*/
 
 
 }

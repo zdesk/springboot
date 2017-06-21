@@ -44,6 +44,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	OAuth2ClientContext oauth2ClientContext;
 	
 	@Autowired
+	AuthorizationCodeResourceDetails authorizationCodeResourceDetails;
+	
+	@Autowired
+	ResourceServerProperties resourceServerProperties;
+
+	@Autowired
 	FacebookOauthClient facebookClient;
 
     @Autowired
@@ -98,12 +104,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js"
                 ).permitAll()
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/auth/**","/oauth/**").permitAll()
                 .anyRequest().authenticated();
 
         // Custom JWT based security filter
         httpSecurity
-        		.addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class)
+        		.addFilterAt(ssoFilter(), BasicAuthenticationFilter.class)
         		.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
         			
         		
