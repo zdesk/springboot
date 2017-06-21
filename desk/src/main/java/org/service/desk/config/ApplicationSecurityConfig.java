@@ -103,8 +103,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Custom JWT based security filter
         httpSecurity
-        	.antMatcher("/facebook").addFilterAfter(ssoFilter(), BasicAuthenticationFilter.class)
+        		.addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class)
         		.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+        			
         		
 
         // disable page caching
@@ -112,7 +113,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     
     private Filter ssoFilter() {
-    	  OAuth2ClientAuthenticationProcessingFilter facebookFilter = new OAuth2ClientAuthenticationProcessingFilter("/facebook");
+    	  OAuth2ClientAuthenticationProcessingFilter facebookFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/facebook");
     	  OAuth2RestTemplate facebookTemplate = new OAuth2RestTemplate(facebookClient.facebook(), oauth2ClientContext);
     	  facebookFilter.setRestTemplate(facebookTemplate);
     	  UserInfoTokenServices tokenServices = new UserInfoTokenServices(facebookClient.facebookResource().getUserInfoUri(), facebookClient.facebook().getClientId());
