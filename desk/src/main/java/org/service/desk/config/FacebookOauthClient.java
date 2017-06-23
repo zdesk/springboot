@@ -12,10 +12,23 @@ import org.springframework.security.oauth2.client.token.grant.code.Authorization
 @Configuration
 @PropertySource("classpath:facebookoauth2.properties")
 public class FacebookOauthClient {	
+	
+
+	
 	@Bean
     @ConfigurationProperties("facebook.client")
-    public AuthorizationCodeResourceDetails facebook() {
-      return new AuthorizationCodeResourceDetails();
+    public AuthorizationCodeResourceDetails facebook() {	
+		/*String clientId;
+		String clientSecret;
+		String accessTokenUri;
+		String userAuthorizationUri;
+		String tokenName;
+		String response_type;
+		String authenticationScheme;
+		String clientAuthenticationScheme;		
+		AuthorizationCodeResourceDetails fbAuthCodeResource = new AuthorizationCodeResourceDetails();*/
+		
+		return new AuthorizationCodeResourceDetails();
     }
     
     @Bean
