@@ -21,9 +21,6 @@ public class CustomFacebookAuthenticationSuccessHandler implements Authenticatio
 		System.err.println(request);
 		System.err.println(response);
 		System.err.println(authentication);		
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-	}
-
-	
+	}	
 
 }
