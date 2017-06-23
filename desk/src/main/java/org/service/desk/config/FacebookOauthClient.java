@@ -33,4 +33,5 @@ public class FacebookOauthClient {
       registration.setOrder(-100);
       return registration;
     }
+    
 }

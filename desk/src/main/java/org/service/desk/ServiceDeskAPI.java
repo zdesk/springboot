@@ -15,7 +15,6 @@ import org.springframework.context.annotation.*;
 
 
 @SpringBootApplication
-//@ComponentScan(basePackages={"org.serivce.desk.jwt","org.service.desk"})
 public class ServiceDeskAPI extends SpringBootServletInitializer {
 
 	@Override

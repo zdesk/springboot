@@ -1,15 +1,13 @@
 package org.service.desk.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import javax.servlet.Filter;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,7 +15,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
@@ -27,6 +26,8 @@ import org.springframework.security.oauth2.client.token.grant.code.Authorization
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.service.desk.jwtauth.JwtAuthEntryPoint;
 import org.service.desk.jwtauth.JwtAuthTokenFilter;
 import org.service.desk.services.UserInformationService;
@@ -51,6 +52,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	FacebookOauthClient facebookClient;
+	
+	@Autowired
+	private CustomFacebookAuthenticationSuccessHandler customFacebookAuthenticationSuccessHandler;
 
     @Autowired
     private JwtAuthEntryPoint unauthorizedHandler;
@@ -119,12 +123,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     
     private Filter ssoFilter() {
-    	  OAuth2ClientAuthenticationProcessingFilter facebookFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/facebook");
+    	
+    	  OAuth2ClientAuthenticationProcessingFilter facebookFilter = new OAuth2ClientAuthenticationProcessingFilter("/oauth/handler");
     	  OAuth2RestTemplate facebookTemplate = new OAuth2RestTemplate(facebookClient.facebook(), oauth2ClientContext);
     	  facebookFilter.setRestTemplate(facebookTemplate);
     	  UserInfoTokenServices tokenServices = new UserInfoTokenServices(facebookClient.facebookResource().getUserInfoUri(), facebookClient.facebook().getClientId());
     	  tokenServices.setRestTemplate(facebookTemplate);
     	  facebookFilter.setTokenServices(tokenServices);
+    	  facebookFilter.setAuthenticationSuccessHandler(customFacebookAuthenticationSuccessHandler);
     	  return facebookFilter;
-    }
+    }    
+    
 }

@@ -76,9 +76,11 @@ public class JwtAuthController {
         }
     }
     
-    @RequestMapping(value="/oauth/handler")
-    public String user(@RequestParam String code) {
-      return code;
+    @RequestMapping(value="/usr")
+    public Principal user(Principal principal) {
+      return principal;
     }
+    
+      
 
 }
