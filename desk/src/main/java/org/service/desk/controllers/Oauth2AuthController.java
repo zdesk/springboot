@@ -27,7 +27,7 @@ public class Oauth2AuthController {
     @RequestMapping(value="/oauth/handler", method=RequestMethod.GET)
     public String accessToken(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
     	
-    	String accessTokenUri= "https://graph.facebook.com/oauth/access_token?client_id=692899840881825&redirect_uri=http://localhost:8080/oauth/handler&client_secret=61ac73198af844fed4b5a19dec8bfe1e&code="+code;
+    	String accessTokenUri= "https://graph.facebook.com/oauth/access_token?client_id=<My ClientID>&redirect_uri=http://localhost:8080/oauth/handler&client_secret=<My ClientSecret>&code="+code;
 
     	String accessToken =  new JSONObject(this.sendGET(accessTokenUri)).getString("access_token");
     	
